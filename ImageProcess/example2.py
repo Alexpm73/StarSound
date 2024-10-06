@@ -17,6 +17,7 @@ def get_metaData(image_path):
         return metaData
     else:
         return {}
+    
 
 def get_image_name(image_path):
     #get the name of the file
@@ -26,6 +27,9 @@ def get_image_name(image_path):
 def find_light_zones(image_path, max_illumintation=200, min_area=1000, max_distance=50):
     #read image
     image = cv2.imread(image_path)
+    if image is None:
+        print(f"Error: Unable to load image at {image_path}")
+        return []
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Get the dimensions of the image
